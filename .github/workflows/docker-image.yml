@@ -28,9 +28,9 @@ jobs:
     - name: Build the Docker image
       run: |
         IMAGE_TAG=${{ github.event.inputs.tag || 'latest' }}
-        docker build . --file Dockerfile --tag webssh:$IMAGE_TAG
+        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/webssh:$IMAGE_TAG
 
     - name: Push the Docker image to Docker Hub
       run: |
         IMAGE_TAG=${{ github.event.inputs.tag || 'latest' }}
-        docker push webssh:$IMAGE_TAG
+        docker push ${{ secrets.DOCKER_USERNAME }}/webssh:$IMAGE_TAG
